@@ -24,7 +24,7 @@ export default class Toolbar extends React.Component {
 const styles = StyleSheet.create({
   toolbar: {
     height: 56,
-    backgroundColor: '#6EAAF2'
+    backgroundColor: '#2196F3'
   }
 })
 
