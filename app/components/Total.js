@@ -38,6 +38,6 @@ const styles = StyleSheet.create({
 
   active: {
     borderBottomColor: '#6098ED',
-    borderBottomWidth: 2
+    borderBottomWidth: 1
   }
 })
