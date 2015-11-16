@@ -1,27 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
-var React = require('react-native');
-var {
+import React from 'react-native'
+
+// const Toolbar = require('./app/components').Toolbar
+
+import {
+  Toolbar
+} from './app/components'
+
+const {
   AppRegistry,
   StyleSheet,
   Text,
   View,
 } = React;
 
-var Expense = React.createClass({
-  render: function() {
+class Expense extends React.Component {
+  render() {
     return (
-      <View style={styles.container}>
+      <View>
+        <Toolbar></Toolbar>
       </View>
     );
   }
-});
+};
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('Expense', () => Expense);
