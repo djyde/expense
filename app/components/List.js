@@ -7,24 +7,26 @@ const {
   StyleSheet,
   ListView,
   Text,
-  View
+  View,
+  Image
 } = React
 
 export default class List extends React.Component {
   constructor(props){
     super(props)
+
     let ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
 
     let fakeData = [
       {
-        type: 'tranport',
-        cost: 12
+        type: 'Tranport',
+        expense: 12
       },
       {
-        type: 'eat',
-        cost: 30
+        type: 'Food',
+        expense: 30
       }
     ]
 
@@ -34,10 +36,25 @@ export default class List extends React.Component {
   }
 
   _renderItem(item){
+    let icon
+    switch(item.type){
+      case 'Tranport':
+        icon = require('../images/ic_transport.png')
+        break;
+      case 'Food':
+        icon = require('../images/ic_local_dining.png')
+        break;
+    }
+
     return (
-      <View>
-        <Text>{ item.type }</Text>
-        <Text>{ item.cost }</Text>
+      <View style={ styles.container }>
+        <View style={ styles.icon }>
+          <Image source={ icon } />
+        </View>
+        <View style={ styles.detail }>
+          <Text style={ styles.text }>{ item.type }</Text>
+          <Text style={[ styles.expense, styles.text ]}>{ item.expense }</Text>
+        </View>
       </View>
     )
   }
@@ -53,5 +70,31 @@ export default class List extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  icon: {
+    // flex: 1,
+    padding: 12
+  },
+  detail: {
+    // backgroundColor: 'blue',
+    flex: 1,
+    flexDirection: 'row',
+    padding: 12,
+    paddingLeft: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: '#c7c7c7'
+  },
+
+  expense: {
+    textAlign: 'right'
+  },
+
+  text: {
+    flex: 1,
+    fontSize: 18,
+    color: '#444444'
+  }
 })
