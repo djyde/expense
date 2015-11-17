@@ -28,10 +28,21 @@ export default class List extends React.Component {
     }
   }
 
-  fetchExpenses(callback){
+  componentDidMount(){
+    this.fetchExpenses()
+  }
+
+  fetchExpenses(){
+    let ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    })
+
     Expenses.get_all( (data) => {
-      console.log('data')
-      callback(Object.keys(data.rows).map( (key) => { return data.rows[key] } ))
+      let items = Object.keys(data.rows).map( (key) => { return data.rows[key] } )
+      items.reverse()
+      this.setState({
+        dataSource: ds.cloneWithRows(items)
+      })
     })
   }
 
@@ -39,7 +50,7 @@ export default class List extends React.Component {
 
     let icon
     switch(item.type){
-      case 'Tranport':
+      case 'Transport':
         icon = require('../images/ic_transport.png')
         break;
       case 'Food':
@@ -60,19 +71,7 @@ export default class List extends React.Component {
     )
   }
 
-  render() {  
-
-    this.fetchExpenses((data) => {
-
-      let ds = new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      })
-
-      this.setState({
-        dataSource: ds.cloneWithRows(data),
-      })
-    })
-
+  render() {
     return (
       <ListView
         dataSource={this.state.dataSource}

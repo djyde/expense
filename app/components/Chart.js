@@ -2,18 +2,31 @@
 
 import React from 'react-native'
 
+import { Expenses } from '../models'
+
 const {
   View,
   StyleSheet,
-  Text
+  Text,
+  TouchableHighlight
 } = React
 
 export default class Chart extends React.Component {
+  onPress(){
+    Expenses.add({
+      type: 'Transport',
+      expense: 12,
+      createdAt: Date.now()
+    })
+  }
   render(){
     return (
-      <View style = { styles.chart }>
-        <Text style = { styles.center }>Chart</Text>
-      </View>
+      <TouchableHighlight onPress={this.onPress}>
+        <View style = { styles.chart }>
+          <Text style = { styles.center }>Chart</Text>
+        </View>
+      </TouchableHighlight>
+      
     )
   }
 }
