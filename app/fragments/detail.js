@@ -22,7 +22,7 @@ const {
   ToolbarAndroid,
   Image,
   TextInput,
-
+  TouchableOpacity
 } = React;
 
 export default class Detail extends React.Component {
@@ -36,15 +36,27 @@ export default class Detail extends React.Component {
     return (
       <View style = { styles.detail }>
         <View style={ styles.toolbar }>
-          <TextInput 
-            placeholder="How much"
-            keyboardType="numeric"
-            autoFocus={ true }
-            placeholderTextColor="#ddd"
-            underlineColorAndroid="#fff"
-            style={ styles.textInput }
-          />
+          <View style={ styles.flex }>
+          </View>
+          <View style={ styles.flex }>
+            <TextInput 
+              placeholder="How much"
+              keyboardType="numeric"
+              autoFocus={ true }
+              placeholderTextColor="#fff"
+              underlineColorAndroid="#6EAAF2"
+              textAlign="center"
+              style={[ styles.textInput ]}
+            />
+          </View>
+          <View style={[ styles.flex, styles.icon ]}>
+            <TouchableOpacity
+              >
+              <Image source={ require('../images/ic_done.png') }/>
+            </TouchableOpacity>
+          </View>
         </View>
+        
       </View>
     );
   }
@@ -56,11 +68,21 @@ const styles = StyleSheet.create({
     height: 56,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center'
+  },
+  flex: {
+    flex: 1,
+    alignItems: 'center'
   },
   textInput: {
-    width: 100,
+    justifyContent: 'center',
+    flex: 1,
+    width: 200,
     fontSize: 18,
-    color: 'fff'
+    color: '#fff' // TODO this is a bug of React Native https://github.com/facebook/react-native/issues/3742
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    paddingRight: 12
   }
 });
