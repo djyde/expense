@@ -35,8 +35,10 @@ class Expense extends React.Component {
       name: 'main',
       index: 0
     }
+
     return (
       <Navigator
+        configureScene={() => Navigator.SceneConfigs.FadeAndroid}
         initialRoute = { initialRoute }
         renderScene = { Router }
       />
