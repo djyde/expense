@@ -47,7 +47,7 @@ export default class ListPager extends React.Component {
             <List></List>
           </View>
           <View style={ styles.full }>
-            <List></List>
+
           </View>
         </ViewPagerAndroid>
       </View>

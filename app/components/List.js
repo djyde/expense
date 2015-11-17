@@ -3,6 +3,10 @@
 import React from 'react-native'
 import config from '../../package.json'
 
+import {
+  Expenses
+} from '../models'
+
 const {
   StyleSheet,
   ListView,
@@ -19,23 +23,20 @@ export default class List extends React.Component {
       rowHasChanged: (r1, r2) => r1 !== r2
     })
 
-    let fakeData = [
-      {
-        type: 'Tranport',
-        expense: 12
-      },
-      {
-        type: 'Food',
-        expense: 30
-      }
-    ]
-
     this.state = {
-      dataSource: ds.cloneWithRows(fakeData),
+      dataSource: ds.cloneWithRows([])
     }
   }
 
+  fetchExpenses(callback){
+    Expenses.get_all( (data) => {
+      console.log('data')
+      callback(Object.keys(data.rows).map( (key) => { return data.rows[key] } ))
+    })
+  }
+
   _renderItem(item){
+
     let icon
     switch(item.type){
       case 'Tranport':
@@ -59,7 +60,19 @@ export default class List extends React.Component {
     )
   }
 
-  render() {
+  render() {  
+
+    this.fetchExpenses((data) => {
+
+      let ds = new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2
+      })
+
+      this.setState({
+        dataSource: ds.cloneWithRows(data),
+      })
+    })
+
     return (
       <ListView
         dataSource={this.state.dataSource}
