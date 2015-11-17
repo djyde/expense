@@ -2,6 +2,8 @@
 
 import React from 'react-native'
 
+import Router from './app/router'
+
 import {
   Toolbar,
   Chart,
@@ -14,6 +16,7 @@ const {
   StyleSheet,
   Text,
   View,
+  Navigator,
   ViewPagerAndroid
 } = React;
 
@@ -28,14 +31,15 @@ class Expense extends React.Component {
   }
 
   render() {
+    let initialRoute = {
+      name: 'main',
+      index: 0
+    }
     return (
-      <View style = { styles.app }>
-        <Toolbar></Toolbar>
-        <Chart></Chart>
-
-        <ListPager selectedPage={ this.state.selectedPage }></ListPager>
-
-      </View>
+      <Navigator
+        initialRoute = { initialRoute }
+        renderScene = { Router }
+      />
     );
   }
 };
