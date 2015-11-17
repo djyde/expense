@@ -19,8 +19,10 @@ const {
   StyleSheet,
   Text,
   View,
+  ToolbarAndroid,
   Image,
-  ViewPagerAndroid
+  TextInput,
+
 } = React;
 
 export default class Detail extends React.Component {
@@ -33,12 +35,32 @@ export default class Detail extends React.Component {
   render() {
     return (
       <View style = { styles.detail }>
-        <Text>Detail</Text>
+        <View style={ styles.toolbar }>
+          <TextInput 
+            placeholder="How much"
+            keyboardType="numeric"
+            autoFocus={ true }
+            placeholderTextColor="#ddd"
+            underlineColorAndroid="#fff"
+            style={ styles.textInput }
+          />
+        </View>
       </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
-
+  toolbar: {
+    backgroundColor: '#6EAAF2',
+    height: 56,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  textInput: {
+    width: 100,
+    fontSize: 18,
+    color: 'fff'
+  }
 });

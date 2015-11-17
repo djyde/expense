@@ -32,7 +32,7 @@ class Expense extends React.Component {
 
   render() {
     let initialRoute = {
-      name: 'main',
+      name: 'detail',
       index: 0
     }
 
