@@ -11,7 +11,8 @@ import {
   Toolbar,
   Navigator,
   Chart,
-  ListPager
+  ListPager,
+  Selector
 } from '../components'
 
 const {
@@ -40,7 +41,7 @@ export default class Detail extends React.Component {
           </View>
           <View style={ styles.flex }>
             <TextInput 
-              placeholder="How much"
+              placeholder="￥"
               keyboardType="numeric"
               autoFocus={ true }
               placeholderTextColor="#fff"
@@ -50,13 +51,13 @@ export default class Detail extends React.Component {
             />
           </View>
           <View style={[ styles.flex, styles.icon ]}>
-            <TouchableOpacity
-              >
+            <TouchableOpacity>
               <Image source={ require('../images/ic_done.png') }/>
             </TouchableOpacity>
           </View>
         </View>
         
+        <Selector></Selector>
       </View>
     );
   }
